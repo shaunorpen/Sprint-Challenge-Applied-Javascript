@@ -24,6 +24,7 @@ function createTab (tabName) {
     divTab.classList.add('tab');
     divTab.textContent = tabName;
     divTab.addEventListener('click', toggleActive);
+    divTab.addEventListener('click', (e) => toggleDisplayedCards('.card'));
     return divTab;
 }
 
@@ -32,4 +33,10 @@ function toggleActive (e) {
         tab.classList.remove('active-tab');
     })
     e.target.classList.toggle('active-tab');
+}
+
+function toggleDisplayedCards (selector) {
+    document.querySelectorAll(selector).forEach(card => {
+        card.classList.toggle('hidden');
+    })
 }
