@@ -49,3 +49,11 @@ function createCarousel () {
 }
 
 document.querySelector('.carousel-container').appendChild(createCarousel());
+
+document.querySelector('.left-button').addEventListener('click', (e) => {
+  document.querySelector('img:first-of-type').style.display = 'block';
+});
+
+document.querySelector('.right-button').addEventListener('click', (e) => {
+  document.querySelector('img:last-of-type').style.display = 'block';
+});
