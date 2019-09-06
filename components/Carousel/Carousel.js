@@ -17,3 +17,49 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+function createCarousel () {
+  const divCarousel = document.createElement('div');
+  const divLeftButton = document.createElement('div');
+  const img1 = document.createElement('img');
+  const img2 = document.createElement('img');
+  const img3 = document.createElement('img');
+  const img4 = document.createElement('img');
+  const divRightButton = document.createElement('div');
+
+  divCarousel.classList.add('carousel');
+  divLeftButton.classList.add('left-button');
+  divRightButton.classList.add('right-button');
+
+  divLeftButton.textContent = ' < ';
+  img1.src = './assets/carousel/mountains.jpeg';
+  img2.src = './assets/carousel/computer.jpeg';
+  img3.src = './assets/carousel/trees.jpeg';
+  img4.src = './assets/carousel/turntable.jpeg';
+  divRightButton.textContent = ' > ';
+
+  divCarousel.appendChild(divLeftButton);
+  divCarousel.appendChild(img1);
+  divCarousel.appendChild(img2);
+  divCarousel.appendChild(img3);
+  divCarousel.appendChild(img4);
+  divCarousel.appendChild(divRightButton);
+
+  return divCarousel;
+}
+
+document.querySelector('.carousel-container').appendChild(createCarousel());
+
+document.querySelector('img:nth-of-type(1)').style.display = 'block';
+
+document.querySelector('.left-button').addEventListener('click', (e) => {
+  document.querySelector('img:nth-of-type(2)').style.display = 'block';
+  document.querySelector('img:nth-of-type(1)').style.display = 'none';
+  document.querySelector('img:nth-of-type(4)').style.display = 'none';
+});
+
+document.querySelector('.right-button').addEventListener('click', (e) => {
+  document.querySelector('img:nth-of-type(4)').style.display = 'block';
+  document.querySelector('img:nth-of-type(1)').style.display = 'none';
+  document.querySelector('img:nth-of-type(2)').style.display = 'none';
+});
