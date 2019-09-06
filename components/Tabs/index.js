@@ -10,7 +10,7 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
     .then(response => {
-        document.querySelector('.tabs .topics').appendChild(createTab('All'));
+        document.querySelector('.tabs .topics').appendChild(createTab('all'));
         response.data.topics.forEach(topic => {
             document.querySelector('.tabs .topics').appendChild(createTab(topic));
         })
@@ -24,7 +24,19 @@ function createTab (tabName) {
     divTab.classList.add('tab');
     divTab.textContent = tabName;
     divTab.addEventListener('click', toggleActive);
-    divTab.addEventListener('click', (e) => toggleDisplayedCards('.card'));
+    divTab.addEventListener('click', (e) => {
+        const classSelector = buildSelector(e);
+        function buildSelector (e) {
+            if (e.target.innerHTML === 'all') {
+                return '';
+            } else if (e.target.innerHTML === 'node.js') {
+                return '.node';
+            } else {
+                return `.${e.target.innerHTML}`;
+            }
+        }
+        toggleDisplayedCards(`.card${classSelector}`);
+    });
     return divTab;
 }
 
@@ -36,6 +48,9 @@ function toggleActive (e) {
 }
 
 function toggleDisplayedCards (selector) {
+    document.querySelectorAll('.card').forEach(card => {
+        card.classList.add('hidden');
+    })
     document.querySelectorAll(selector).forEach(card => {
         card.classList.toggle('hidden');
     })
