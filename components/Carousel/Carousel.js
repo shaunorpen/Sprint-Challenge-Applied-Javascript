@@ -50,16 +50,32 @@ function createCarousel () {
 
 document.querySelector('.carousel-container').appendChild(createCarousel());
 
-document.querySelector('img:nth-of-type(1)').style.display = 'block';
+const carouselImages = Array.from(document.querySelectorAll('.carousel img'));
+
+let currentImage = 1;
+
+document.querySelector(`img:nth-of-type(${currentImage})`).style.display = 'block';
 
 document.querySelector('.left-button').addEventListener('click', (e) => {
-  document.querySelector('img:nth-of-type(2)').style.display = 'block';
-  document.querySelector('img:nth-of-type(1)').style.display = 'none';
-  document.querySelector('img:nth-of-type(4)').style.display = 'none';
+  if (currentImage - 1 === 0) {
+    currentImage = 4;
+  } else {
+    currentImage--;
+  }
+  carouselImages.forEach(image => {
+    image.style.display = 'none';
+  });
+  document.querySelector(`img:nth-of-type(${currentImage})`).style.display = 'block';
 });
 
 document.querySelector('.right-button').addEventListener('click', (e) => {
-  document.querySelector('img:nth-of-type(4)').style.display = 'block';
-  document.querySelector('img:nth-of-type(1)').style.display = 'none';
-  document.querySelector('img:nth-of-type(2)').style.display = 'none';
+  if (currentImage + 1 === 5) {
+    currentImage = 1;
+  } else {
+    currentImage++;
+  }
+  carouselImages.forEach(image => {
+    image.style.display = 'none';
+  });
+  document.querySelector(`img:nth-of-type(${currentImage})`).style.display = 'block';
 });
