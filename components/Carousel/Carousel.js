@@ -50,12 +50,16 @@ function createCarousel () {
 
 document.querySelector('.carousel-container').appendChild(createCarousel());
 
+document.querySelector('img:nth-of-type(1)').style.display = 'block';
+
 document.querySelector('.left-button').addEventListener('click', (e) => {
-  document.querySelector('img:first-of-type').style.display = 'block';
-  document.querySelector('img:last-of-type').style.display = 'none';
+  document.querySelector('img:nth-of-type(2)').style.display = 'block';
+  document.querySelector('img:nth-of-type(1)').style.display = 'none';
+  document.querySelector('img:nth-of-type(4)').style.display = 'none';
 });
 
 document.querySelector('.right-button').addEventListener('click', (e) => {
-  document.querySelector('img:first-of-type').style.display = 'none';
-  document.querySelector('img:last-of-type').style.display = 'block';
+  document.querySelector('img:nth-of-type(4)').style.display = 'block';
+  document.querySelector('img:nth-of-type(1)').style.display = 'none';
+  document.querySelector('img:nth-of-type(2)').style.display = 'none';
 });
